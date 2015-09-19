@@ -1,0 +1,95 @@
+.sprite {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-landscapeTiles_074 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -5px;
+}
+
+.sprite-landscapeTiles_082 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -114px;
+}
+
+.sprite-landscapeTiles_089 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -223px;
+}
+
+.sprite-landscapeTiles_090 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -332px;
+}
+
+.sprite-landscapeTiles_096 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -441px;
+}
+
+.sprite-landscapeTiles_097 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -550px;
+}
+
+.sprite-landscapeTiles_104 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -659px;
+}
+
+.sprite-landscapeTiles_105 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -768px;
+}
+
+.sprite-landscapeTiles_111 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -877px;
+}
+
+.sprite-landscapeTiles_112 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -986px;
+}
+
+.sprite-landscapeTiles_117 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -1095px;
+}
+
+.sprite-landscapeTiles_123 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -1204px;
+}
+
+.sprite-landscapeTiles_125 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -1313px;
+}
+
+.sprite-landscapeTiles_126 {
+    width: 132px;
+    height: 99px;
+    background-position: -5px -1422px;
+}
+
+.sprite-landscapeTiles_127 {
+    width: 132px;
+    height: 98px;
+    background-position: -5px -1531px;
+}

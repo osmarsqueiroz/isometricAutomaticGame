@@ -1,0 +1,39 @@
+*{
+	margin:0;
+    padding: 0;
+	font-family: 'Dosis', sans-serif;
+    font-weight: normal;
+}
+
+body{
+    background-color: #E7E9EA;
+}
+.master{
+    width:800px;    
+    border:1px solid #888888;
+    margin:10px auto;
+    background-color: #fff;
+    padding: 5px;
+}
+
+#myCanvas{
+    width:800px;
+    height: 600;
+    border:1px solid #ababab;
+    margin:0 auto;
+    display: block;
+}
+#objetivos{
+    margin-left: 20px;
+    display: block;
+    margin-bottom: 30px;
+}
+#objetivos p{
+    font-weight: bold;
+}
+#objetivos ol{
+    margin-left: 30px;
+}
+#objetivos li{
+    
+}
