@@ -39,6 +39,7 @@ var Grafo = {
     matrizX: 0,
     matrizY: 0,
     matriz: [],
+    listaVertices: [],
     showLog: function (texto) {
         if (Grafo.log) {
             console.log(texto);
@@ -203,20 +204,7 @@ var Grafo = {
     },
 }
 
-var GrafoPesquisar = {
-    lista:[],
-    listaVertices: [],
-    listaVerticeFechada: [],
-    listaVerticeAberta: [],
-    adicionarGrafos:function(listaVertice){
-        GrafoPesquisar.listaVertices = listaVertice;
-    },
-    pesquisarMelhorCaminho: function (idA, idB) {
 
-
-
-    }
-}
 
 window.onload = function () {
     var mapa = [
@@ -252,10 +240,12 @@ window.onload = function () {
     Grafo.processarMatriz(mapa);
 
     Grafo.adicionarPonto(5, 11);
+    Grafo.adicionarPonto(1, 9);
 
 
-    console.log(Grafo.listaVertices);
+//    console.log(Grafo.listaVertices);
 
     Grafo.desenharGrafo(boxAzul);
-    Grafo.pesquisarMelhorCaminho(1, 4)
+    GrafoPesquisar.adicionarListaDeVertices(Grafo.listaVertices)
+    GrafoPesquisar.pesquisarMelhorCaminho(1, 13)
 };
