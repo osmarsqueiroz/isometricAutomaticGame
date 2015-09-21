@@ -16,13 +16,12 @@ var GrafoPesquisar = {
         return false;
     },
     montarChave: function (vertice) {
-        if(typeof vertice !== "object"){
+        if (typeof vertice !== "object") {
             console.log("Não existe objeto para montar chave")
             return false;
         }
-        return vertice.posicao_x+"-"+vertice.posicao_y;
+        return vertice.posicao_x + "-" + vertice.posicao_y;
     },
-    
     pesquisarMelhorCaminho: function (idA, idB) {
 
         var verticeOrigem = GrafoPesquisar.pesquisarId(idA);
@@ -32,20 +31,19 @@ var GrafoPesquisar = {
             console.log("Não existe um dos pontos")
             return false;
         }
-        
+
         GrafoPesquisar.configurarInicioDaPesquisa(verticeOrigem, verticeDestino);
     },
-    
     configurarInicioDaPesquisa: function (verticeOrigem, verticeDestino) {
-        
+
     },
-    adicionarLista :function(lista,vertice){
-        console.log(lista,vertice)
+    adicionarLista: function (lista, vertice) {
+        console.log(lista, vertice)
     },
-    adicionarListaAberta :function(vertice){
-        GrafoPesquisar.listaVerticeAberta = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeAberta,vertice)
+    adicionarListaAberta: function (vertice) {
+        GrafoPesquisar.listaVerticeAberta = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeAberta, vertice)
     },
-    adicionarListaFechada :function(vertice){        
-        GrafoPesquisar.listaVerticeFechada = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeFechada,vertice)
+    adicionarListaFechada: function (vertice) {
+        GrafoPesquisar.listaVerticeFechada = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeFechada, vertice)
     },
 }
