@@ -27,6 +27,7 @@ var Vertice = function (id, posicao_x, posicao_y) {
     this.posicao_x = posicao_x;
     this.posicao_y = posicao_y;
     this.aresta = 0;
+    this.custo = 0;
     this.vertices = [];
 
 }
@@ -247,5 +248,5 @@ window.onload = function () {
 
     Grafo.desenharGrafo(boxAzul);
     GrafoPesquisar.adicionarListaDeVertices(Grafo.listaVertices)
-    GrafoPesquisar.pesquisarMelhorCaminho(1, 13)
+    GrafoPesquisar.pesquisarMelhorCaminho(2, 13)
 };

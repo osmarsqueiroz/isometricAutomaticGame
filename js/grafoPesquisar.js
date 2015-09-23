@@ -35,15 +35,41 @@ var GrafoPesquisar = {
         GrafoPesquisar.configurarInicioDaPesquisa(verticeOrigem, verticeDestino);
     },
     configurarInicioDaPesquisa: function (verticeOrigem, verticeDestino) {
-
+        GrafoPesquisar.objetivoVertice = verticeDestino;
+        GrafoPesquisar.adicionarListaAberta(verticeOrigem);
+        GrafoPesquisar.verificarLoopCaminho();
+    },
+    verificarLoopCaminho: function () {
+        var menorVertice = null;
+        for(var i in GrafoPesquisar.listaVerticeAberta){
+            var vertice = GrafoPesquisar.listaVerticeAberta[i];          
+            if(menorVertice == null){
+                menorVertice = vertice;
+            }
+        }
+    },
+    checarChaveExiste: function (lista, chave) {
+        return typeof lista[chave] !== "undefined";
     },
     adicionarLista: function (lista, vertice) {
-        console.log(lista, vertice)
+        var chave = GrafoPesquisar.montarChave(vertice);
+        if (!GrafoPesquisar.checarChaveExiste(lista, chave)) {
+            lista[chave] = vertice;
+        }
+
+        return lista;
+
     },
     adicionarListaAberta: function (vertice) {
-        GrafoPesquisar.listaVerticeAberta = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeAberta, vertice)
+        for (var i in vertice.vertices) {
+            var chave = GrafoPesquisar.montarChave(vertice.vertices[i]);
+            var verticeTemp = GrafoPesquisar.listaVertices[chave];
+            GrafoPesquisar.listaVerticeAberta = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeAberta, verticeTemp);
+
+        }
     },
     adicionarListaFechada: function (vertice) {
+//            var chave = GrafoPesquisar.montarChave(vertice.vertices[i]);        
         GrafoPesquisar.listaVerticeFechada = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeFechada, vertice)
     },
 }
