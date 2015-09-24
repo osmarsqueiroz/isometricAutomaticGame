@@ -1,6 +1,3 @@
-
-
-
 var Desenhar = function (ctx, cor) {
     this.ctx = ctx;
     this.cor = cor;
@@ -113,13 +110,10 @@ var Grafo = {
     },
     ligarListaVertices: function () {
         for (var v in Grafo.listaVertices) {
-            Grafo.listaVertices[v] = Grafo.ligarVertices(Grafo.listaVertices[v]);
+            Grafo.listaVertices[v] = Grafo.buscarPercurso(Grafo.listaVertices[v]);
         }
     },
-    ligarVertices: function (vertice) {
-
-        return  Grafo.buscarPercurso(vertice);
-    },
+    
     procurarDirecaoVertice: function (posicao_x, posicao_y, direcao) {
         var achou = false;
         var passos = 0;
@@ -160,13 +154,15 @@ var Grafo = {
         return false;
     },
     buscarPercurso: function (vertice) {
+     
         for (var i = 0; i < 4; i++) {
             var novoVertice = Grafo.procurarDirecaoVertice(vertice.posicao_x, vertice.posicao_y, i);
-
+           
             if (novoVertice !== false) {
                 vertice.vertices.push(novoVertice)
             }
         }
+//        console.log(vertice.vertices)
         return vertice;
 
     },
@@ -239,14 +235,14 @@ window.onload = function () {
         }
     }
     Grafo.processarMatriz(mapa);
-
-    Grafo.adicionarPonto(5, 11);
-    Grafo.adicionarPonto(1, 9);
+//
+//    Grafo.adicionarPonto(5, 11);
+//    Grafo.adicionarPonto(1, 9);
 
 
 //    console.log(Grafo.listaVertices);
 
     Grafo.desenharGrafo(boxAzul);
     GrafoPesquisar.adicionarListaDeVertices(Grafo.listaVertices)
-    GrafoPesquisar.pesquisarMelhorCaminho(2, 13)
+    GrafoPesquisar.pesquisarMelhorCaminho(3, 13)
 };
