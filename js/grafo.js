@@ -13,17 +13,17 @@ var Desenhar = function (ctx, cor) {
         this.ctx.rect(this.largura * posicaoX, this.altura * posicaoY, this.largura, this.altura);
         this.ctx.stroke();
         this.ctx.fillStyle = "#fff";
-        this.ctx.font = "10px Arial";
-        this.ctx.fillText(label, this.largura * posicaoX + (this.largura / 2), this.altura * posicaoY + (this.altura / 2));
+        this.ctx.font = "16px Arial";
+        this.ctx.fillText(label, this.largura * (posicaoX+1)- (this.largura/1.3), this.altura * (posicaoY+1) - (this.altura/3));
     }
 }
 
 
-var Vertice = function (id, posicao_x, posicao_y) {
-    this.id = id;
+var Vertice = function (posicao_x, posicao_y, aresta) {
+    this.id = null;
     this.posicao_x = posicao_x;
     this.posicao_y = posicao_y;
-    this.aresta = 0;
+    this.aresta = aresta || 0;
     this.custo = 0;
     this.vertices = [];
 
@@ -38,6 +38,7 @@ var Grafo = {
     matrizY: 0,
     matriz: [],
     listaVertices: [],
+    listaReferenciaChave: [],
     showLog: function (texto) {
         if (Grafo.log) {
             console.log(texto);
@@ -56,7 +57,6 @@ var Grafo = {
 
         if (matriz[posicao_y][posicao_x] === 1) {
             var tipoVertice = Grafo.verificarPontoChave(matriz, posicao_x, posicao_y);
-
             if (tipoVertice) {
                 Grafo.adicionarVertice(posicao_x, posicao_y);
             }
@@ -103,9 +103,11 @@ var Grafo = {
         return false;
     },
     adicionarVertice: function (posicao_x, posicao_y) {
-        var id = Grafo.id;
-        Grafo.id++;
-        Grafo.listaVertices[posicao_x + "-" + posicao_y] = new Vertice(id, posicao_x, posicao_y);
+        Grafo.listaVertices.push(new Vertice(posicao_x, posicao_y));
+
+        var id = Grafo.listaVertices.length;
+        Grafo.listaVertices[id - 1].id = id;
+        Grafo.listaReferenciaChave[posicao_x + "-" + posicao_y] = (id - 1);
 
     },
     ligarListaVertices: function () {
@@ -113,7 +115,18 @@ var Grafo = {
             Grafo.listaVertices[v] = Grafo.buscarPercurso(Grafo.listaVertices[v]);
         }
     },
-    
+    buscarPercurso: function (vertice) {
+
+        for (var i = 0; i < 4; i++) {
+            var novoVertice = Grafo.procurarDirecaoVertice(vertice.posicao_x, vertice.posicao_y, i);
+
+            if (novoVertice !== false) {
+                vertice.vertices.push(novoVertice)
+            }
+        }
+        return vertice;
+
+    },
     procurarDirecaoVertice: function (posicao_x, posicao_y, direcao) {
         var achou = false;
         var passos = 0;
@@ -139,12 +152,14 @@ var Grafo = {
             }
 
             achouPonto = Grafo.validaPosicao(Grafo.matriz, posicao_x, posicao_y);
+          
             if (achouPonto) {
                 passos++;
-                if (typeof Grafo.listaVertices[posicao_x + "-" + posicao_y] == "object") {
-                    var idVertice = Grafo.listaVertices[posicao_x + "-" + posicao_y].id;
-                    var tempVertice = new Vertice(idVertice, posicao_x, posicao_y);
-                    tempVertice.aresta = passos;
+                var idVertice = Grafo.buscaChavePorPosicao(posicao_x, posicao_y);
+                if (idVertice !== false) {
+                    var id = Grafo.listaVertices[idVertice].id;
+                    var tempVertice = new Vertice(posicao_x, posicao_y, passos);
+                    tempVertice.id = id;
                     return tempVertice;
                 }
             } else {
@@ -153,18 +168,11 @@ var Grafo = {
         }
         return false;
     },
-    buscarPercurso: function (vertice) {
-     
-        for (var i = 0; i < 4; i++) {
-            var novoVertice = Grafo.procurarDirecaoVertice(vertice.posicao_x, vertice.posicao_y, i);
-           
-            if (novoVertice !== false) {
-                vertice.vertices.push(novoVertice)
-            }
+    buscaChavePorPosicao: function (posicao_x, posicao_y) {
+        if (typeof Grafo.listaReferenciaChave[posicao_x + "-" + posicao_y] == "number") {
+            return Grafo.listaReferenciaChave[posicao_x + "-" + posicao_y];
         }
-//        console.log(vertice.vertices)
-        return vertice;
-
+        return false;
     },
     processarMatriz: function (matriz) {
         Grafo.matriz = matriz;
@@ -179,18 +187,20 @@ var Grafo = {
 
 
     },
-    adicionarPonto: function (posicao_x, posicao_y) {
-        Grafo.adicionarVertice(posicao_x, posicao_y);
-        var vertice = Grafo.listaVertices[posicao_x + "-" + posicao_y];
-
-        vertice = Grafo.ligarVertices(vertice);
-        Grafo.listaVertices[posicao_x + "-" + posicao_y] = vertice;
-        for (var i in vertice.vertices) {
-            var tempVertice = vertice.vertices[i];
-            Grafo.listaVertices[tempVertice.posicao_x + "-" + tempVertice.posicao_y] = Grafo.ligarVertices(tempVertice)
-        }
-    },
+//    adicionarPonto: function (posicao_x, posicao_y) {
+//        Grafo.adicionarVertice(posicao_x, posicao_y);
+//        var id = Grafo.buscaChavePorPosicao(posicao_x ,posicao_y)
+//        var vertice = Grafo.listaVertices[id];
+//
+//        vertice = Grafo.ligarVertices(vertice);
+//        Grafo.listaVertices[posicao_x + "-" + posicao_y] = vertice;
+//        for (var i in vertice.vertices) {
+//            var tempVertice = vertice.vertices[i];
+//            Grafo.listaVertices[tempVertice.posicao_x + "-" + tempVertice.posicao_y] = Grafo.ligarVertices(tempVertice)
+//        }
+//    },
     desenharGrafo: function (desenho) {
+//        console.log(Grafo.listaVertices)
         for (var id in Grafo.listaVertices) {
             var vertice = Grafo.listaVertices[id];
             desenho.desenhar(vertice.posicao_x, vertice.posicao_y, vertice.id);
@@ -223,8 +233,9 @@ window.onload = function () {
     var objCanvas = document.getElementById('myCanvas');
     var cenario = objCanvas.getContext("2d");
     var boxbranco = new Desenhar(cenario, "white");
-    var boxAzul = new Desenhar(cenario, "#888");
+    var boxAzul = new Desenhar(cenario, "#5b1");
     var boxVerde = new Desenhar(cenario, "#eee");
+
     for (var y in mapa) {
         for (var x in mapa[y]) {
             if (mapa[y][x] == 1) {
@@ -234,13 +245,14 @@ window.onload = function () {
             }
         }
     }
+
     Grafo.processarMatriz(mapa);
 //
 //    Grafo.adicionarPonto(5, 11);
 //    Grafo.adicionarPonto(1, 9);
 
 
-//    console.log(Grafo.listaVertices);
+    console.log(Grafo.listaVertices);
 
     Grafo.desenharGrafo(boxAzul);
     GrafoPesquisar.adicionarListaDeVertices(Grafo.listaVertices)

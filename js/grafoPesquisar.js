@@ -7,21 +7,6 @@ var GrafoPesquisar = {
     adicionarListaDeVertices: function (listaVertice) {
         GrafoPesquisar.listaVertices = listaVertice;
     },
-    pesquisarId: function (id) {
-        for (var i in GrafoPesquisar.listaVertices) {
-            if (GrafoPesquisar.listaVertices[i].id === id) {
-                return GrafoPesquisar.listaVertices[i];
-            }
-        }
-        return false;
-    },
-    montarChave: function (vertice) {
-        if (typeof vertice !== "object") {
-            console.log("Não existe objeto para montar chave")
-            return false;
-        }
-        return vertice.posicao_x + "-" + vertice.posicao_y;
-    },
     pesquisarMelhorCaminho: function (idA, idB) {
 
         var verticeOrigem = GrafoPesquisar.pesquisarId(idA);
@@ -33,6 +18,20 @@ var GrafoPesquisar = {
         }
 
         GrafoPesquisar.configurarInicioDaPesquisa(verticeOrigem, verticeDestino);
+    },
+    pesquisarId: function (id) {
+        /*sempre o id é fixo ao id da lista geral */
+        id = parseInt(id) - 1;
+        if (typeof GrafoPesquisar.listaVertices[id] !== "undefined") {
+            return GrafoPesquisar.listaVertices[id];
+        }
+
+//        for (var i in GrafoPesquisar.listaVertices) {
+//            if (GrafoPesquisar.listaVertices[i].id === id) {
+//               
+//            }
+//        }
+        return false;
     },
     configurarInicioDaPesquisa: function (verticeOrigem, verticeDestino) {
         GrafoPesquisar.objetivoVertice = verticeDestino;
@@ -48,52 +47,57 @@ var GrafoPesquisar = {
             } else if (menorVertice.custo > vertice.custo) {
                 menorVertice = vertice;
             }
-
-//            console.log(vertice,menorVertice.custo , vertice.custo)
-//            console.log("Achei o menor");
+            
             var chave = GrafoPesquisar.montarChave(menorVertice);
 
             var verticeNovo = GrafoPesquisar.listaVertices[chave];
             verticeNovo.custo = menorVertice.custo;
-            
+
             GrafoPesquisar.adicionarListaFechada(verticeNovo)
             GrafoPesquisar.adicionarListaAberta(verticeNovo)
 
-//            console.log("Chave: " + chave);
-//            console.log(GrafoPesquisar.listaVerticeAberta );
-        }
-    },
-    checarChaveExiste: function (chave) {
-        if (typeof GrafoPesquisar.listaVerticeAberta[chave] !== "undefined" || typeof GrafoPesquisar.listaVerticeFechada[chave] !== "undefined") {
-            return true;
-        }
-        return false;
-    },
-    adicionarLista: function (lista, vertice) {
-        var chave = GrafoPesquisar.montarChave(vertice);
-        if (!GrafoPesquisar.checarChaveExiste( chave)) {
-            lista[chave] = vertice;
-        }
 
-        return lista;
-
+        }
     },
     adicionarListaAberta: function (vertice) {
-//        console.log(vertice.aresta);
-
+        
         for (var i in vertice.vertices) {
             var verticeTemp = vertice.vertices[i];
             verticeTemp.custo = verticeTemp.aresta + vertice.aresta;
             GrafoPesquisar.listaVerticeAberta = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeAberta, verticeTemp);
         }
 
-        var chave = GrafoPesquisar.montarChave(vertice);
-        console.log("Chave remove: " + chave);
+//        var chave = GrafoPesquisar.montarChave(vertice);
+//        console.log("Chave remove: " + chave);
 //        GrafoPesquisar.listaVerticeAberta.splice("8-0",1);
-         console.log(GrafoPesquisar.listaVerticeAberta.lastIndexOf());
+//        console.log(GrafoPesquisar.listaVerticeAberta.lastIndexOf());
+    },
+    adicionarLista: function (lista, vertice) {
+        console.log(vertice);
+        var chave = GrafoPesquisar.montarChave(vertice);
+        if (!GrafoPesquisar.checarChaveExiste(chave)) {
+            lista[chave] = vertice;
+        }
+
+        return lista;
+
     },
     adicionarListaFechada: function (vertice) {
 //            var chave = GrafoPesquisar.montarChave(vertice.vertices[i]);        
         GrafoPesquisar.listaVerticeFechada = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeFechada, vertice)
+    },
+    montarChave: function (vertice) {
+        if (typeof vertice !== "object") {
+            console.log("Não existe objeto para montar chave")
+            return false;
+        }
+        return vertice.id - 1;
+
+    },
+    checarChaveExiste: function (chave) {
+        if (typeof GrafoPesquisar.listaVerticeAberta[chave] !== "undefined" || typeof GrafoPesquisar.listaVerticeFechada[chave] !== "undefined") {
+            return true;
+        }
+        return false;
     },
 }
