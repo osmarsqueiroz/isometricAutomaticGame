@@ -4,7 +4,7 @@ var Desenhar = function (ctx, cor) {
     this.largura = 30;
     this.altura = 30;
     this.desenhar = function (posicaoX, posicaoY, texto) {
-        var label = texto || "";
+        var label = texto || "0";
         this.ctx.lineWidth = "2";
         this.ctx.lineJoin = "miter";
         this.ctx.fillStyle = this.cor;
@@ -187,18 +187,19 @@ var Grafo = {
 
 
     },
-//    adicionarPonto: function (posicao_x, posicao_y) {
-//        Grafo.adicionarVertice(posicao_x, posicao_y);
-//        var id = Grafo.buscaChavePorPosicao(posicao_x ,posicao_y)
-//        var vertice = Grafo.listaVertices[id];
+    adicionarPonto: function (posicao_x, posicao_y) {
+        Grafo.adicionarVertice(posicao_x, posicao_y);
+        var id = Grafo.buscaChavePorPosicao(posicao_x ,posicao_y)
+        var vertice = Grafo.listaVertices[id];
+        console.log(id,vertice);
 //
-//        vertice = Grafo.ligarVertices(vertice);
-//        Grafo.listaVertices[posicao_x + "-" + posicao_y] = vertice;
+//        vertice = Grafo.buscarPercurso(vertice);
+//        Grafo.listaVertices[id] = vertice;
 //        for (var i in vertice.vertices) {
 //            var tempVertice = vertice.vertices[i];
 //            Grafo.listaVertices[tempVertice.posicao_x + "-" + tempVertice.posicao_y] = Grafo.ligarVertices(tempVertice)
 //        }
-//    },
+    },
     desenharGrafo: function (desenho) {
 //        console.log(Grafo.listaVertices)
         for (var id in Grafo.listaVertices) {
@@ -233,13 +234,14 @@ window.onload = function () {
     var objCanvas = document.getElementById('myCanvas');
     var cenario = objCanvas.getContext("2d");
     var boxbranco = new Desenhar(cenario, "white");
-    var boxAzul = new Desenhar(cenario, "#5b1");
-    var boxVerde = new Desenhar(cenario, "#eee");
+    var boxVerde = new Desenhar(cenario, "#5b1");
+    var boxCinza = new Desenhar(cenario, "#eee");
+    var boxVermelho = new Desenhar(cenario, "red");
 
     for (var y in mapa) {
         for (var x in mapa[y]) {
             if (mapa[y][x] == 1) {
-                boxVerde.desenhar(x, y);
+                boxCinza.desenhar(x, y);
             } else {
                 boxbranco.desenhar(x, y);
             }
@@ -252,9 +254,13 @@ window.onload = function () {
 //    Grafo.adicionarPonto(1, 9);
 
 
-    console.log(Grafo.listaVertices);
+//    console.log(Grafo.listaVertices);
 
-    Grafo.desenharGrafo(boxAzul);
+    Grafo.desenharGrafo(boxVerde);
     GrafoPesquisar.adicionarListaDeVertices(Grafo.listaVertices)
-    GrafoPesquisar.pesquisarMelhorCaminho(3, 13)
+    var listaMelhorCaminho = GrafoPesquisar.pesquisarMelhorCaminho(25, 1)
+//    
+    for(var i in listaMelhorCaminho){
+        boxVermelho.desenhar(listaMelhorCaminho[i].posicao_x, listaMelhorCaminho[i].posicao_y, listaMelhorCaminho[i].custo);
+    }
 };

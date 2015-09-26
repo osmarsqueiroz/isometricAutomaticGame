@@ -3,6 +3,8 @@ var GrafoPesquisar = {
     listaVertices: [],
     listaVerticeFechada: [],
     listaVerticeAberta: [],
+    achouObjetivo: false,
+    listaFinal: [],
     objetivoVertice: null,
     adicionarListaDeVertices: function (listaVertice) {
         GrafoPesquisar.listaVertices = listaVertice;
@@ -17,7 +19,7 @@ var GrafoPesquisar = {
             return false;
         }
 
-        GrafoPesquisar.configurarInicioDaPesquisa(verticeOrigem, verticeDestino);
+       return GrafoPesquisar.configurarInicioDaPesquisa(verticeOrigem, verticeDestino);
     },
     pesquisarId: function (id) {
         /*sempre o id é fixo ao id da lista geral */
@@ -26,65 +28,145 @@ var GrafoPesquisar = {
             return GrafoPesquisar.listaVertices[id];
         }
 
-//        for (var i in GrafoPesquisar.listaVertices) {
-//            if (GrafoPesquisar.listaVertices[i].id === id) {
-//               
-//            }
-//        }
         return false;
     },
     configurarInicioDaPesquisa: function (verticeOrigem, verticeDestino) {
         GrafoPesquisar.objetivoVertice = verticeDestino;
         GrafoPesquisar.adicionarListaAberta(verticeOrigem);
-        GrafoPesquisar.verificarLoopCaminho();
-    },
-    verificarLoopCaminho: function () {
-        var menorVertice = null;
-        for (var i in GrafoPesquisar.listaVerticeAberta) {
-            var vertice = GrafoPesquisar.listaVerticeAberta[i];
-            if (menorVertice === null) {
-                menorVertice = vertice;
-            } else if (menorVertice.custo > vertice.custo) {
-                menorVertice = vertice;
-            }
-            
-            var chave = GrafoPesquisar.montarChave(menorVertice);
 
+        GrafoPesquisar.verificarLoopCaminho();
+
+        return GrafoPesquisar.retornarMelhorCaminho();
+    },
+    verificarLoopCaminho: function () {       
+        while (GrafoPesquisar.listaAbertaCheia()) {
+            if (GrafoPesquisar.verificarListaAbertaObjetivo()) {
+                return true;
+            }
+            var menorVertice = null;
+            for (var i in GrafoPesquisar.listaVerticeAberta) {
+                if (GrafoPesquisar.listaVerticeAberta[i] !== null) {
+                    var vertice = GrafoPesquisar.listaVerticeAberta[i];
+                    if (menorVertice === null) {
+                        menorVertice = vertice;
+                    } else if (menorVertice.custo > vertice.custo) {
+                        menorVertice = vertice;
+                    }
+                }
+            }
+
+            var chave = GrafoPesquisar.montarChave(menorVertice);
             var verticeNovo = GrafoPesquisar.listaVertices[chave];
             verticeNovo.custo = menorVertice.custo;
 
-            GrafoPesquisar.adicionarListaFechada(verticeNovo)
-            GrafoPesquisar.adicionarListaAberta(verticeNovo)
+            GrafoPesquisar.removerListaAberta(menorVertice.id)
+            GrafoPesquisar.adicionarListaAberta(verticeNovo);
+//            console.log("total:" + GrafoPesquisar.listaVerticeAberta.length);
+
 
 
         }
+//        console.log(GrafoPesquisar.listaVerticeAberta)
+//        console.log(GrafoPesquisar.listaVerticeFechada)
+    },
+    listaAbertaCheia: function () {
+        return GrafoPesquisar.listaVerticeAberta.length > 0;
+    },
+    verificarListaAbertaObjetivo: function () {
+        return GrafoPesquisar.achouObjetivo;
+    },
+    removerListaAberta: function (id) {
+        for (var i in GrafoPesquisar.listaVerticeAberta) {
+            if (GrafoPesquisar.listaVerticeAberta[i].id === id) {
+                GrafoPesquisar.listaVerticeAberta.splice(i, 1);
+                return true;
+            }
+        }
+    },
+    checarElementoExisteNaLista: function (lista, id) {
+        for (var i in lista) {
+            if (lista[i].id === id) {
+                return i;
+            }
+        }
+        return false;
+    },
+    retornarMelhorCaminho: function () {
+        GrafoPesquisar.listaFinal = [];
+        if (GrafoPesquisar.achouObjetivo) {
+//            console.log("Achou! eba!")
+            GrafoPesquisar.listaVerticeFechada.reverse();
+            GrafoPesquisar.listaFinal.push(GrafoPesquisar.listaVerticeFechada[0]);
+            GrafoPesquisar.pesquisaDeProfundidadeListaFechada(0);
+        }
+        GrafoPesquisar.listaFinal.reverse()
+        return GrafoPesquisar.listaFinal;
+
+    },
+    pesquisaDeProfundidadeListaFechada: function (id) {
+        GrafoPesquisar.listaVerticeFechada[id];
+        var elementoMenor = null;
+        var elementoMenorValor = null;
+        var elementoIdNovo = null;
+        var custoBase = elementoMenorValor = GrafoPesquisar.listaVerticeFechada[id].custo;
+        var chave = GrafoPesquisar.montarChave(GrafoPesquisar.listaVerticeFechada[id]);
+        var vertices = GrafoPesquisar.listaVertices[chave].vertices;
+        if(custoBase == 0){
+           return false;
+        }
+
+
+        for (var j in vertices) {
+            var idTemp = GrafoPesquisar.checarElementoExisteNaLista(GrafoPesquisar.listaVerticeFechada, vertices[j].id);
+            if (idTemp !== false) {
+                if (elementoMenorValor > GrafoPesquisar.listaVerticeFechada[idTemp].custo) {
+                    elementoMenorValor = GrafoPesquisar.listaVerticeFechada[idTemp].custo;
+                    elementoMenor = GrafoPesquisar.listaVerticeFechada[idTemp];
+                    elementoIdNovo = idTemp;
+                }
+            }
+        }
+        GrafoPesquisar.listaFinal.push(elementoMenor);
+//        console.log(elementoMenorValor, elementoMenor);
+        GrafoPesquisar.pesquisaDeProfundidadeListaFechada(elementoIdNovo);
+
+
     },
     adicionarListaAberta: function (vertice) {
-        
+        GrafoPesquisar.adicionarListaFechada(vertice);
+//        console.log(vertice);
+//        console.log("ID item:" + vertice.id);
         for (var i in vertice.vertices) {
             var verticeTemp = vertice.vertices[i];
-            verticeTemp.custo = verticeTemp.aresta + vertice.aresta;
-            GrafoPesquisar.listaVerticeAberta = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeAberta, verticeTemp);
-        }
+            verticeTemp.custo = verticeTemp.aresta + vertice.custo;
+            if (verticeTemp.id === GrafoPesquisar.objetivoVertice.id) {
+                GrafoPesquisar.achouObjetivo = true;
+                GrafoPesquisar.adicionarListaFechada(verticeTemp);
+            } else {
+                GrafoPesquisar.listaVerticeAberta = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeAberta, verticeTemp);
 
-//        var chave = GrafoPesquisar.montarChave(vertice);
-//        console.log("Chave remove: " + chave);
-//        GrafoPesquisar.listaVerticeAberta.splice("8-0",1);
-//        console.log(GrafoPesquisar.listaVerticeAberta.lastIndexOf());
+            }
+        }
     },
     adicionarLista: function (lista, vertice) {
-        console.log(vertice);
-        var chave = GrafoPesquisar.montarChave(vertice);
-        if (!GrafoPesquisar.checarChaveExiste(chave)) {
-            lista[chave] = vertice;
+        if (!GrafoPesquisar.checarChaveExiste(vertice)) {
+            lista.push(vertice);
+        } else {
+            var posicaoLista = GrafoPesquisar.checarElementoExisteNaLista(lista, vertice.id);
+
+            if (posicaoLista !== false) {
+                if (lista[posicaoLista].custo > vertice.custo) {
+                    console.log("ID: " + lista[posicaoLista].id);
+                    console.log("antes: " + lista[posicaoLista].custo);
+                    console.log("despois: " + vertice.custo);
+                    lista[posicaoLista] = vertice;
+                }
+            }
         }
-
         return lista;
-
     },
     adicionarListaFechada: function (vertice) {
-//            var chave = GrafoPesquisar.montarChave(vertice.vertices[i]);        
-        GrafoPesquisar.listaVerticeFechada = GrafoPesquisar.adicionarLista(GrafoPesquisar.listaVerticeFechada, vertice)
+        GrafoPesquisar.listaVerticeFechada.push(vertice);
     },
     montarChave: function (vertice) {
         if (typeof vertice !== "object") {
@@ -92,12 +174,11 @@ var GrafoPesquisar = {
             return false;
         }
         return vertice.id - 1;
-
     },
-    checarChaveExiste: function (chave) {
-        if (typeof GrafoPesquisar.listaVerticeAberta[chave] !== "undefined" || typeof GrafoPesquisar.listaVerticeFechada[chave] !== "undefined") {
-            return true;
+    checarChaveExiste: function (vertice) {
+        if (GrafoPesquisar.checarElementoExisteNaLista(GrafoPesquisar.listaVerticeAberta, vertice.id) === false && GrafoPesquisar.checarElementoExisteNaLista(GrafoPesquisar.listaVerticeFechada, vertice.id) === false) {
+            return false;
         }
-        return false;
+        return true;
     },
 }
