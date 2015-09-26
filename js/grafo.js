@@ -216,18 +216,18 @@ var Grafo = {
 
 window.onload = function () {
     var mapa = [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [0, 0, 0, 1, 0, 0, 1, 0, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 1, 0, 1, 0, 0, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [0, 0, 1, 0, 0, 0, 0, 0, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 1, 0, 0, 1, 0, 1],
-        [1, 0, 0, 1, 0, 0, 1, 0, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 1, 0, 0, 0, 0, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1]
+        [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+        [0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+        [0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1],
+        [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+        [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
+        [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1],
+        [1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1],
+        [1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
+        [1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1],
+        [1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1],
+        [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1],
+       
     ];
 
 
@@ -258,7 +258,7 @@ window.onload = function () {
 
     Grafo.desenharGrafo(boxVerde);
     GrafoPesquisar.adicionarListaDeVertices(Grafo.listaVertices)
-    var listaMelhorCaminho = GrafoPesquisar.pesquisarMelhorCaminho(25, 1)
+    var listaMelhorCaminho = GrafoPesquisar.pesquisarMelhorCaminho(1, 26)
 //    
     for(var i in listaMelhorCaminho){
         boxVermelho.desenhar(listaMelhorCaminho[i].posicao_x, listaMelhorCaminho[i].posicao_y, listaMelhorCaminho[i].custo);
