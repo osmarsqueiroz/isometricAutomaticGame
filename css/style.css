@@ -17,8 +17,8 @@ body{
 }
 
 #myCanvas{
-    width:800px;
-    height: 600;
+    width:1500px;
+    height: 1500px;
     border:1px solid #ababab;
     margin:0 auto;
     display: block;
