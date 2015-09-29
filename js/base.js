@@ -10,9 +10,9 @@ var GerarChaveElemento = {
         return matriz[posicao_y][posicao_x];
     },
     verificarPontoChave: function (matriz, posicao_x, posicao_y) {
-        
+
         var p5 = GerarChaveElemento.validaPosicao(matriz, posicao_x, posicao_y);
-        if(p5 == 0){
+        if (p5 == 0) {
             return "0000";
         }
         var p2 = GerarChaveElemento.validaPosicao(matriz, posicao_x, posicao_y - 1);
@@ -20,7 +20,7 @@ var GerarChaveElemento = {
         var p6 = GerarChaveElemento.validaPosicao(matriz, posicao_x + 1, posicao_y);
         var p8 = GerarChaveElemento.validaPosicao(matriz, posicao_x, posicao_y + 1);
 
-        return p2 + "" + p6  + "" + p8 + "" + p4;
+        return p2 + "" + p6 + "" + p8 + "" + p4;
     }
 };
 
@@ -53,7 +53,9 @@ var EstruturaRuaMatriz = function () {
     this.matriz = []; /*9x9*/
 }
 
-
+var radiano = function (grau) {
+    return grau * (Math.PI / 180);
+}
 window.onload = function () {
 
     var objCanvas = document.getElementById('myCanvas');
@@ -78,24 +80,64 @@ window.onload = function () {
 //        cenario.rect(10, 10, 132, 100);
 //        cenario.stroke();
 
-        var baseX = 450;
-        var baseY = 50;
-        for (var y in mapa) {
-            y = parseInt(y);
-            baseX = 450 + (y * 64);
-            baseY = 50 + (y * 32);
-            
-            for (var x in mapa[y]) {
-                x = parseInt(x);
-                var elementoMapa = GerarChaveElemento.verificarPontoChave(mapa, x, y);
-                console.log(elementoMapa)
-                desenharRua(mapaRuaIsometrico.listaSegmentos[elementoMapa], baseX, baseY);
-                baseX -= 64;
-                baseY += 32;
-            }
-//            return false;
-        }
-  
+//        var baseX = 450;
+//        var baseY = 50;
+//        for (var y in mapa) {
+//            y = parseInt(y);
+//            baseX = 450 + (y * 64);
+//            baseY = 50 + (y * 32);
+//            
+//            for (var x in mapa[y]) {
+//                x = parseInt(x);
+//                var elementoMapa = GerarChaveElemento.verificarPontoChave(mapa, x, y);
+////                console.log(elementoMapa)
+//                desenharRua(mapaRuaIsometrico.listaSegmentos[elementoMapa], baseX, baseY);
+//                baseX -= 64;
+//                baseY += 32;
+//            }
+////            return false;
+//        }
+
+        desenharRua(mapaRuaIsometrico.listaSegmentos['0101'], 200, 200);
+//        cenario.beginPath();
+        cenario.strokeStyle = "red";
+
+        var raio = 75;
+        var posicao_x = 200;
+        var posicao_y = 232;
+        var grau = 63;
+
+//        cenario.lineWidth = 1;
+//        cenario.moveTo(posicao_x, posicao_y);
+//        cenario.lineTo(posicao_x + parseInt(Math.sin(radiano(grau)) * raio), posicao_y + parseInt(Math.cos(radiano(grau)) * raio));
+//        cenario.stroke();
+        cenario.strokeStyle = "green";
+        
+        raio = 36;
+
+        posicao_x = 217;
+        posicao_y = 241;
+
+        var novoX = posicao_x + parseInt(Math.sin(radiano(grau)) * raio);
+        var novoY = posicao_y + parseInt(Math.cos(radiano(grau)) * raio);
+
+        cenario.moveTo(posicao_x, posicao_y);
+        cenario.lineTo(novoX, novoY);
+        console.log(novoX, novoY);
+
+        cenario.stroke();
+//            raio = 75;
+        grau = 116;
+//                for (var grau = 0; grau <= 117; grau += 2) {    
+//            raio
+//            grau
+//        cenario.strokeStyle = "red";
+//        cenario.moveTo(posicao_x, posicao_y);
+//        cenario.lineTo(posicao_x + parseInt(Math.sin(radiano(grau)) * raio), posicao_y + parseInt(Math.cos(radiano(grau)) * raio));
+//
+//        cenario.stroke();
+
+//        }
     };
 
     imagem.src = "image/iso_vertical_city.png";
