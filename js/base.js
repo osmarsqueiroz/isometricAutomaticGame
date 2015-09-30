@@ -98,36 +98,55 @@ window.onload = function () {
 ////            return false;
 //        }
 
-        desenharRua(mapaRuaIsometrico.listaSegmentos['0101'], 200, 200);
-//        cenario.beginPath();
-        cenario.strokeStyle = "red";
-
-        var raio = 75;
-        var posicao_x = 200;
-        var posicao_y = 232;
-        var grau = 63;
-
-//        cenario.lineWidth = 1;
+//        desenharRua(mapaRuaIsometrico.listaSegmentos['1111'], 200, 200);
+////        cenario.beginPath();
+//        cenario.strokeStyle = "red";
+//
+//        var raio = 75;
+//        var posicao_x = 200;
+//        var posicao_y = 232;
+//        var grau = 63;
+//
+////        cenario.lineWidth = 1;
+////        cenario.moveTo(posicao_x, posicao_y);
+////        cenario.lineTo(posicao_x + parseInt(Math.sin(radiano(grau)) * raio), posicao_y + parseInt(Math.cos(radiano(grau)) * raio));
+////        cenario.stroke();
+//        cenario.strokeStyle = "green";
+//        
+//        raio = 36;
+//        posicao_x = 217;
+//        posicao_y = 241;
+//
+//        var novoX = posicao_x + parseInt(Math.sin(radiano(grau)) * raio);
+//        var novoY = posicao_y + parseInt(Math.cos(radiano(grau)) * raio);
+//
 //        cenario.moveTo(posicao_x, posicao_y);
-//        cenario.lineTo(posicao_x + parseInt(Math.sin(radiano(grau)) * raio), posicao_y + parseInt(Math.cos(radiano(grau)) * raio));
+//        cenario.lineTo(novoX, novoY);
+////        
+//   var novoXnovoX = novoX;
+//   var novoYnovoY = novoY;
 //        cenario.stroke();
-        cenario.strokeStyle = "green";
-        
-        raio = 36;
+//          raio = 74;
+//          grau = 117;
+//         novoX = posicao_x + parseInt(Math.sin(radiano(grau)) * raio);
+//         novoY = posicao_y + parseInt(Math.cos(radiano(grau)) * raio);
+//
+//        cenario.moveTo(posicao_x, posicao_y);
+//        cenario.lineTo(novoX, novoY);
+//        cenario.stroke();
+//        cenario.beginPath();
+//        
+//          raio = 70;
+//          grau = 102;
+//         novoX = posicao_x + parseInt(Math.sin(radiano(grau)) * raio);
+//         novoY = posicao_y + parseInt(Math.cos(radiano(grau)) * raio);
+//        cenario.moveTo(novoXnovoX,novoYnovoY);
+//        console.log(novoX, novoY);
+//        cenario.lineTo(novoX, novoY);
+//        cenario.stroke();
 
-        posicao_x = 217;
-        posicao_y = 241;
-
-        var novoX = posicao_x + parseInt(Math.sin(radiano(grau)) * raio);
-        var novoY = posicao_y + parseInt(Math.cos(radiano(grau)) * raio);
-
-        cenario.moveTo(posicao_x, posicao_y);
-        cenario.lineTo(novoX, novoY);
-        console.log(novoX, novoY);
-
-        cenario.stroke();
 //            raio = 75;
-        grau = 116;
+//        grau = 116;
 //                for (var grau = 0; grau <= 117; grau += 2) {    
 //            raio
 //            grau
@@ -138,6 +157,48 @@ window.onload = function () {
 //        cenario.stroke();
 
 //        }
+
+
+        desenharRua(mapaRuaIsometrico.listaSegmentos['1111'], 200, 200);
+
+
+
+        var raio = 36;
+        var posicao_x = 217;//200
+        var posicao_y = 243;//234
+        var grau = 63;
+
+
+        cenario.strokeStyle = "yellow";
+
+        cenario.beginPath();
+        cenario.lineWidth = 1;
+        cenario.moveTo(posicao_x, posicao_y);
+        cenario.lineTo(posicao_x + parseInt(Math.sin(radiano(grau)) * raio), posicao_y + parseInt(Math.cos(radiano(grau)) * raio));
+        cenario.stroke();
+
+
+        var raio = 18;
+        var posicao_x = 217;//200
+        var posicao_y = 243;//234
+        var grau = 116;
+
+
+        cenario.strokeStyle = "yellow";
+
+        cenario.beginPath();
+        cenario.lineWidth = 1;
+        cenario.moveTo(posicao_x, posicao_y);
+        cenario.lineTo(posicao_x + parseInt(Math.sin(radiano(grau)) * raio), posicao_y + parseInt(Math.cos(radiano(grau)) * raio));
+        cenario.stroke();
+        console.log(posicao_x + parseInt(Math.sin(radiano(grau)) * raio), posicao_y + parseInt(Math.cos(radiano(grau)) * raio));
+        
+
+
+
+
+
+
     };
 
     imagem.src = "image/iso_vertical_city.png";
