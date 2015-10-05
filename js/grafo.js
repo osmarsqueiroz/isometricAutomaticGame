@@ -258,9 +258,9 @@ window.onload = function () {
 
     Grafo.desenharGrafo(boxVerde);
     GrafoPesquisar.adicionarListaDeVertices(Grafo.listaVertices)
-    var listaMelhorCaminho = GrafoPesquisar.pesquisarMelhorCaminho(1, 26)
+    var listaMelhorCaminho = GrafoPesquisar.pesquisarMelhorCaminho(5, 39)
 //    
     for(var i in listaMelhorCaminho){
-        boxVermelho.desenhar(listaMelhorCaminho[i].posicao_x, listaMelhorCaminho[i].posicao_y, listaMelhorCaminho[i].custo);
+       boxVermelho.desenhar(listaMelhorCaminho[i].posicao_x, listaMelhorCaminho[i].posicao_y, listaMelhorCaminho[i].custo);
     }
 };
