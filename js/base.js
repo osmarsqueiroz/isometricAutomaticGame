@@ -42,14 +42,6 @@ var mapa = [
 ];
 
 
-
-var EstruturaRuaMapa = function (largura, altura, posicao_x, posicao_y) {
-    this.largura = largura || 10;
-    this.altura = altura || 10;
-    this.posicao_x = posicao_x || 0;
-    this.posicao_y = posicao_y || 0;
-};
-
 var EstruturaRuaMatriz = function () {
     this.matriz = []; /*9x9*/
 }
@@ -68,7 +60,7 @@ window.onload = function () {
         cenario.drawImage(imagem, EstruturaRuaMapa.posicao_x, EstruturaRuaMapa.posicao_y, EstruturaRuaMapa.largura, EstruturaRuaMapa.altura, posicaoTelaX, posicaoTelaY, EstruturaRuaMapa.largura, EstruturaRuaMapa.altura);
     }
     var desenharCarro = function (EstruturaRuaMapa, posicaoTelaX, posicaoTelaY) {
-        cenario.drawImage(imagemCarro, EstruturaRuaMapa.posicao_x, EstruturaRuaMapa.posicao_y, EstruturaRuaMapa.largura, EstruturaRuaMapa.altura, posicaoTelaX, posicaoTelaY, EstruturaRuaMapa.largura, EstruturaRuaMapa.altura);
+        cenario.drawImage(imagem, EstruturaRuaMapa.posicao_x, EstruturaRuaMapa.posicao_y, EstruturaRuaMapa.largura, EstruturaRuaMapa.altura, posicaoTelaX, posicaoTelaY, EstruturaRuaMapa.largura, EstruturaRuaMapa.altura);
     }
     imagem.onload = function () {
 //

@@ -25,3 +25,11 @@ var EstruturaRuaMapa = function (largura, altura, posicao_x, posicao_y) {
     this.posicao_x = posicao_x || 0;
     this.posicao_y = posicao_y || 0;
 };
+
+
+var EstruturaRuaMapa = function (largura, altura, posicao_x, posicao_y) {
+    this.largura = largura || 10;
+    this.altura = altura || 10;
+    this.posicao_x = posicao_x || 0;
+    this.posicao_y = posicao_y || 0;
+};
