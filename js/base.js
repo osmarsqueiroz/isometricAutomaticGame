@@ -28,16 +28,17 @@ var GerarChaveElemento = {
 
 
 var mapa = [
-    [1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 1, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 1, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 0, 1, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 1, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+        [1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+        [1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1],
+        [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+        [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
+        [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1],
+        [1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1],
+        [1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
+        [1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1],
+        [1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1],
+        [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1],
 ];
 
 
@@ -80,23 +81,22 @@ window.onload = function () {
 //        cenario.rect(10, 10, 132, 100);
 //        cenario.stroke();
 
-//        var baseX = 450;
-//        var baseY = 50;
-//        for (var y in mapa) {
-//            y = parseInt(y);
-//            baseX = 450 + (y * 64);
-//            baseY = 50 + (y * 32);
-//            
-//            for (var x in mapa[y]) {
-//                x = parseInt(x);
-//                var elementoMapa = GerarChaveElemento.verificarPontoChave(mapa, x, y);
-////                console.log(elementoMapa)
-//                desenharRua(mapaRuaIsometrico.listaSegmentos[elementoMapa], baseX, baseY);
-//                baseX -= 64;
-//                baseY += 32;
-//            }
-////            return false;
-//        }
+        var baseX = 800;
+        var baseY = 50;
+        for (var y in mapa) {
+            y = parseInt(y);
+            baseX = 800 + (y * 64);
+            baseY = 50 + (y * 32);
+            
+            for (var x in mapa[y]) {
+                x = parseInt(x);
+                var elementoMapa = GerarChaveElemento.verificarPontoChave(mapa, x, y);
+//                console.log(elementoMapa)
+                desenharRua(mapaRuaIsometrico.listaSegmentos[elementoMapa], baseX, baseY);
+                baseX -= 64;
+                baseY += 32;
+            }
+        }
 
 //        desenharRua(mapaRuaIsometrico.listaSegmentos['1111'], 200, 200);
 ////        cenario.beginPath();
@@ -158,7 +158,7 @@ window.onload = function () {
 
 //        }
 
-
+/*
         desenharRua(mapaRuaIsometrico.listaSegmentos['1111'], 200, 200);
 
 
@@ -193,7 +193,7 @@ window.onload = function () {
         cenario.stroke();
         console.log(posicao_x + parseInt(Math.sin(radiano(grau)) * raio), posicao_y + parseInt(Math.cos(radiano(grau)) * raio));
         
-
+*/
 
 
 
