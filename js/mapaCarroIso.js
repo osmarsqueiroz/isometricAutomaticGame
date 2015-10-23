@@ -52,16 +52,14 @@ window.onload = function () {
 //      150 > 214 64
 //      350 > 318 32
 //
+////
+//        var base = 200;
+//       for(var chave in mapaCarroPickUpVerde.listaSegmentos) {
 //
-        var base = 200;
-       for(var chave in mapaCarroPickUpVerde.listaSegmentos) {
-
-            desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], base, 200);
-           base += 40;
-     //       cenario.rect(200, 200, mapaCarroPickUpVerde.listaSegmentos[chave].largura, mapaCarroPickUpVerde.listaSegmentos[chave].altura);
-        //    cenario.stroke();
-
-        }
+//            desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], base, 200);
+//           base += 40;
+//
+//        }
 
       //  console.log(mapaCarroPickUpVerde.listaSegmentos);
 
@@ -70,6 +68,11 @@ window.onload = function () {
             // cenario.rect(200, 200, mapaCarroPickUpVerde.listaSegmentos[chave].largura, mapaCarroPickUpVerde.listaSegmentos[chave].altura);
             //   cenario.stroke();
         //},1000);
+        var chave = '00100000';
+        var base = 200;
+        
+        console.log(converterRadianos(10))
+        desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], base, 200);
 
     };
 

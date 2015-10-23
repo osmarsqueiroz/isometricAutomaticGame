@@ -33,3 +33,6 @@ var EstruturaRuaMapa = function (largura, altura, posicao_x, posicao_y) {
     this.posicao_x = posicao_x || 0;
     this.posicao_y = posicao_y || 0;
 };
+var converterRadianos = function(graus){
+    return graus * (Math.PI/180)
+}
