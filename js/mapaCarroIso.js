@@ -14,7 +14,7 @@ var Desenhar = function (ctx, cor) {
         this.ctx.stroke();
         this.ctx.fillStyle = "#fff";
         this.ctx.font = "16px Arial";
-        this.ctx.fillText(label, this.largura * (posicaoX+1)- (this.largura/1.3), this.altura * (posicaoY+1) - (this.altura/3));
+        this.ctx.fillText(label, this.largura * (posicaoX + 1) - (this.largura / 1.3), this.altura * (posicaoY + 1) - (this.altura / 3));
     }
 }
 
@@ -61,18 +61,35 @@ window.onload = function () {
 //
 //        }
 
-      //  console.log(mapaCarroPickUpVerde.listaSegmentos);
+        //  console.log(mapaCarroPickUpVerde.listaSegmentos);
 
         // setInterval(function(){
         //    desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], 200, 200);
-            // cenario.rect(200, 200, mapaCarroPickUpVerde.listaSegmentos[chave].largura, mapaCarroPickUpVerde.listaSegmentos[chave].altura);
-            //   cenario.stroke();
+        // cenario.rect(200, 200, mapaCarroPickUpVerde.listaSegmentos[chave].largura, mapaCarroPickUpVerde.listaSegmentos[chave].altura);
+        //   cenario.stroke();
         //},1000);
-        var chave = '00100000';
-        var base = 200;
-        
-        console.log(converterRadianos(10))
-        desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], base, 200);
+
+        var chave = '00010000';
+        var baseX = 200;
+        var baseY = 200;
+        var angulo = 180; //330;
+        var passo = 10;
+
+        desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], 200, 200);
+        // cos x 
+        // sin y
+
+        var passoXm = baseX;
+        var passoYm = baseY;
+        var loop = 0;
+
+        var teste = setInterval(function () {
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            cenario.clearRect(0,0,2000,2000);
+            desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], passoXm, passoYm);
+
+        }, 100);
 
     };
 
