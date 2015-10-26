@@ -50,7 +50,7 @@ var radiano = function (grau) {
     return grau * (Math.PI / 180);
 }
 window.onload = function () {
-
+    var mapaCache = null;
     var objCanvas = document.getElementById('myCanvas');
     var cenario = objCanvas.getContext("2d");
     var imagem = new Image();
@@ -74,7 +74,7 @@ window.onload = function () {
 
 
 
-        cenario.save();
+//        cenario.save();
         var baseX = 800;
         var baseY = 50;
         for (var y in mapa) {
@@ -92,13 +92,13 @@ window.onload = function () {
             }
         }
 
-        cenario.save();
+        mapaCache = cenario.getImageData(0, 0, objCanvas.width, objCanvas.height);
         imagemCarro.onload = function () {
             var chave = '00100000';
-            var baseX = 40;
-            var baseY = 470;
-            var angulo = 333.5; //330;
-            var passo = 5;
+            var baseX = 44;
+            var baseY = 475;
+            var angulo = 333.3; //333.5;
+            var passo = 1;
 
 //        desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], 200, 200);
             // cos x 
@@ -109,18 +109,21 @@ window.onload = function () {
             var loop = 180;
 
             var teste = setInterval(function () {
-                cenario.save();
+//                cenario.save();
                 passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
                 passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
 //            cenario.clearRect(0,0,2000,2000);
-              
+
 //                cenario.clearRect(0, 0, objCanvas.width, objCanvas.height);
-               
-              
-        
-                desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], passoXm, passoYm);
-//                console.log(passoXm, passoYm)
- cenario.restore();
+
+
+                cenario.putImageData(mapaCache, 0, 0);
+//                cenario.lineWidth = 1;
+                cenario.rect(passoXm, passoYm, 2,2);
+                cenario.fill();
+                desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave],Math.ceil(passoXm) , Math.ceil(passoYm));
+//                console.log(passoXm)
+//                cenario.restore();
             }, 50);
 
         }
