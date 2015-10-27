@@ -30,7 +30,7 @@ var GerarChaveElemento = {
 var mapa = [
     [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
     [1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
-    [1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1],
+    [0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1],
     [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1],
     [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
     [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1],
@@ -77,28 +77,30 @@ window.onload = function () {
 //        cenario.save();
         var baseX = 800;
         var baseY = 50;
-        for (var y in mapa) {
-            y = parseInt(y);
-            baseX = 800 + (y * 64);
-            baseY = 50 + (y * 32);
-
-            for (var x in mapa[y]) {
-                x = parseInt(x);
-                var elementoMapa = GerarChaveElemento.verificarPontoChave(mapa, x, y);
-//                console.log(elementoMapa)
-                desenharRua(mapaRuaIsometrico.listaSegmentos[elementoMapa], baseX, baseY);
-                baseX -= 64;
-                baseY += 32;
-            }
-        }
-
+//        for (var y in mapa) {
+//            y = parseInt(y);
+//            baseX = 800 + (y * 64);
+//            baseY = 50 + (y * 32);
+//
+//            for (var x in mapa[y]) {
+//                x = parseInt(x);
+//                var elementoMapa = GerarChaveElemento.verificarPontoChave(mapa, x,y);
+////                console.log(elementoMapa)
+//                desenharRua(mapaRuaIsometrico.listaSegmentos[elementoMapa],baseX,baseY);
+//                baseX -= 64;
+//                baseY += 32;
+//                break;
+//            }
+//        }
+desenharRua(mapaRuaIsometrico.listaSegmentos["0101"],200,200);
+               
         mapaCache = cenario.getImageData(0, 0, objCanvas.width, objCanvas.height);
         imagemCarro.onload = function () {
             var chave = '00100000';
-            var baseX = 44;
-            var baseY = 475;
+            var baseX = 230;
+            var baseY = 232;
             var angulo = 333.3; //333.5;
-            var passo = 1;
+            var passo = 2.25; // animacao 32 quadros
 
 //        desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], 200, 200);
             // cos x 
@@ -110,6 +112,7 @@ window.onload = function () {
 
             var teste = setInterval(function () {
 //                cenario.save();
+
                 passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
                 passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
 //            cenario.clearRect(0,0,2000,2000);
@@ -117,14 +120,14 @@ window.onload = function () {
 //                cenario.clearRect(0, 0, objCanvas.width, objCanvas.height);
 
 
-                cenario.putImageData(mapaCache, 0, 0);
+//                cenario.putImageData(mapaCache, 0, 0);
 //                cenario.lineWidth = 1;
-                cenario.rect(passoXm, passoYm, 2,2);
-                cenario.fill();
-                desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave],Math.ceil(passoXm) , Math.ceil(passoYm));
-//                console.log(passoXm)
+//                cenario.rect(passoXm, passoYm, 5,5);
+//                cenario.fill();
+                desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave],passoXm , passoYm);
+                console.log(passoXm,passoYm)
 //                cenario.restore();
-            }, 50);
+            }, 1500);
 
         }
         imagemCarro.src = mapaCarroPickUpVerde.imagem;
