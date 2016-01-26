@@ -4,9 +4,11 @@
  * 
  *  animacao dos segmentos
  * 
- * 
+ *  Desenhar o ponteiro do sentido
+    Definir pontos    
  * 
  */
+
 
 
 
@@ -76,7 +78,52 @@ window.onload = function () {
     }
 
 
+    var desenhaGrade = function(){
+         var raio = 26;
+            var basex = 200;
+            var basey = 235;
+            for(var i = 0;i<=4;i++){
+                    //calcular a distancia do proximo ponto
+                   
 
+            raio = 74;
+            angulo = 26;
+            passoXm = Math.cos(converterRadianos(angulo)) * raio + basex;
+            passoYm = Math.sin(converterRadianos(angulo)) * raio + basey;
+            cenario.beginPath();
+            cenario.moveTo(basex, basey);
+            cenario.lineTo(passoXm, passoYm);
+            cenario.stroke();
+
+                    raio = 18;
+                    angulo = 333;
+                    basex = Math.cos(converterRadianos(angulo)) * raio + basex;
+                    basey = Math.sin(converterRadianos(angulo)) * raio + basey; 
+            }
+
+            var basex = 200;
+            var basey = 235;
+
+             for(var i = 0;i<=4;i++){
+                    //calcular a distancia do proximo ponto
+                   
+
+            raio = 74;
+            angulo = 333;
+            passoXm = Math.cos(converterRadianos(angulo)) * raio + basex;
+            passoYm = Math.sin(converterRadianos(angulo)) * raio + basey;
+            cenario.beginPath();
+            cenario.moveTo(basex, basey);
+            cenario.lineTo(passoXm, passoYm);
+            cenario.stroke();
+
+                    raio = 18;
+                    angulo = 26;
+                    basex = Math.cos(converterRadianos(angulo)) * raio + basex;
+                    basey = Math.sin(converterRadianos(angulo)) * raio + basey; 
+            }
+           
+    }
 
     imagem.onload = function () {
 //
@@ -113,53 +160,51 @@ window.onload = function () {
             // cos x 
             // sin y
 
-            var passoXm = baseX + 38;
-            var passoYm = baseY + 51;
+            var passoXm = baseX;
+            var passoYm = baseY;
             var loop = 180;
             desenharRua(mapaRuaIsometrico.listaSegmentos["1111"], baseX, baseY);
 
 //            var teste = setInterval(function () {
 //                   cenario.clearRect(0, 0, objCanvas.width, objCanvas.height);
-//                cenario.save();
+                cenario.save();
 //                cenario.beginPath();
-
-//                passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
-//                passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+             passoXm = 200;
+             passoYm = 235;
+             passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+             passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
 
 ////                cenario.putImageData(mapaCache, 0, 0);
 ////                cenario.lineWidth = 1;
 //                cenario.rect(passoXm, passoYm, 5,5);
 ////                cenario.fill();
-//                cenario.translate(passoXm, passoYm);
-            //   cenario.fillRect(0, 0, 5, 5);
-            var raio = 73;
-            var basex = 200;
-            var basey = 235;
-//               angulo = 333.3
+            desenhaGrade();
+                cenario.translate(passoXm, passoYm);
+               cenario.fillRect(0, 0, 2, 2);
+           
+         /*   angulo = 26;
+            passoXm = Math.cos(converterRadianos(angulo)) * raio + basex;
+            passoYm = Math.sin(converterRadianos(angulo)) * raio + basey;
+            cenario.beginPath();
+            cenario.moveTo(basex, basey);
+            cenario.lineTo(passoXm, passoYm);
+            cenario.stroke();
+*/
+
+           
+
+
+        /*    raio = 74;
             angulo = 26;
             passoXm = Math.cos(converterRadianos(angulo)) * raio + basex;
             passoYm = Math.sin(converterRadianos(angulo)) * raio + basey;
             cenario.beginPath();
-            cenario.moveTo(basex, basey);
+            cenario.moveTo(200, basey);
             cenario.lineTo(passoXm, passoYm);
-            cenario.stroke();
+            cenario.stroke();*/
 
-
-             raio = 73;
-             basey = 265;
-             basex = 67;
-
-            angulo = 333;
-            passoXm = Math.cos(converterRadianos(angulo)) * raio + basex;
-            passoYm = Math.sin(converterRadianos(angulo)) * raio + basey;
-            cenario.beginPath();
-            cenario.moveTo(basex, basey);
-            cenario.lineTo(passoXm, passoYm);
-            cenario.stroke();
-            console.log(passoXm, passoYm)
-
-//                desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], 0, 0);
-//            cenario.restore();
+              //  desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], 0, 0);
+            cenario.restore();
 //            }, 5000);
 
         }
