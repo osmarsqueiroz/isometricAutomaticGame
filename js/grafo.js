@@ -226,6 +226,9 @@ window.onload = function () {
         [1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
         [1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1],
         [1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1],
+        [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1],
+        [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1],
+        [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1],
         [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1],
        
     ];
@@ -258,7 +261,7 @@ window.onload = function () {
 
     Grafo.desenharGrafo(boxVerde);
     GrafoPesquisar.adicionarListaDeVertices(Grafo.listaVertices)
-    var listaMelhorCaminho = GrafoPesquisar.pesquisarMelhorCaminho(5, 39)
+    var listaMelhorCaminho = GrafoPesquisar.pesquisarMelhorCaminho(3, 38)
 //    
     for(var i in listaMelhorCaminho){
        boxVermelho.desenhar(listaMelhorCaminho[i].posicao_x, listaMelhorCaminho[i].posicao_y, listaMelhorCaminho[i].custo);
