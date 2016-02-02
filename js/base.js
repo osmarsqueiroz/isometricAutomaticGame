@@ -77,7 +77,7 @@ window.onload = function () {
         cenario.drawImage(imagemCarro, EstruturaRuaMapa.posicao_x, EstruturaRuaMapa.posicao_y, EstruturaRuaMapa.largura, EstruturaRuaMapa.altura, posicaoTelaX, posicaoTelaY, EstruturaRuaMapa.largura, EstruturaRuaMapa.altura);
     }
 
-
+    
     var desenhaGrade = function () {
         var raio = 26;
         var basex = 200;
@@ -175,23 +175,25 @@ window.onload = function () {
 ////                cenario.lineWidth = 1;
 //                cenario.rect(passoXm, passoYm, 5,5);
 ////                cenario.fill();
-            desenhaGrade();
+            //desenhaGrade();
+
             cenario.fillStyle = "red";
             cenario.save();
             passoXm = 200;
             passoYm = 235;
-            passo = 9*3;
-            angulo = 26; //333.5;
+            passo = 0*1;
+            angulo =26; // 333.5;
             passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
             passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
             cenario.translate(passoXm, passoYm);
             cenario.fillRect(0, 0, 1, 1);
             cenario.restore();
+
             cenario.save();
             passoXm = 200;
             passoYm = 235;
-            passo = 9*5;
-            angulo = 26; //333.5;
+            passo = 18*1;
+            angulo =26; // 333.5;
             passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
             passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
             cenario.translate(passoXm, passoYm);
@@ -201,14 +203,164 @@ window.onload = function () {
             cenario.save();
             passoXm = 200;
             passoYm = 235;
-            passo = 9*5;
-            angulo = 333.5; //333.5;
+            passo = 9*1;
+            angulo =26; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            cenario.translate(passoXm, passoYm);
+            cenario.fillRect(0, 0, 1, 1);
+            cenario.restore();
+            
+            cenario.save();
+            passoXm = 200;
+            passoYm = 235;
+            passo = 18*1;
+            angulo =333.5; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            cenario.translate(passoXm, passoYm);
+            cenario.fillRect(0, 0, 1, 1);
+            cenario.restore();
+            
+            cenario.save();
+            passoXm = 200;
+            passoYm = 235;
+            passo = 9*1;
+            angulo =333.5; // 333.5;
             passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
             passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
             cenario.translate(passoXm, passoYm);
             cenario.fillRect(0, 0, 1, 1);
             cenario.restore();
 
+            cenario.save();
+            passoXm = 200;
+            passoYm = 235;
+            passo = 18*1;
+            angulo =333.5; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            angulo = 26; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+
+            cenario.translate(passoXm, passoYm);
+            cenario.fillRect(0, 0, 1, 1);
+            cenario.restore();
+
+
+            cenario.save();
+            passoXm = 200;
+            passoYm = 235;
+            passo = 9*1;
+            angulo =333.5; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            angulo = 26; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+
+            cenario.translate(passoXm, passoYm);
+            cenario.fillRect(0, 0, 1, 1);
+            cenario.restore();
+
+            cenario.save();
+            passoXm = 200;
+            passoYm = 235;
+            passo = 9*1;
+            angulo =333.5; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            passo = 18*1;
+            angulo = 26; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+
+            cenario.translate(passoXm, passoYm);
+            cenario.fillRect(0, 0, 1, 1);
+            cenario.restore();
+
+             cenario.save();
+            passoXm = 200;
+            passoYm = 235;
+            passo = 18*1;
+            angulo =333.5; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            passo = 9*1;
+            angulo = 26; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+
+            cenario.translate(passoXm, passoYm);
+            cenario.fillRect(0, 0, 1, 1);
+            cenario.restore();
+
+
+/*
+            cenario.save();
+            passoXm = 200;
+            passoYm = 235;
+            passo = 9.5*1;
+            angulo =333;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            cenario.translate(passoXm, passoYm);
+            cenario.fillRect(0, 0, 1, 1);
+            cenario.restore();
+
+            cenario.save();
+            passoXm = 200;
+            passoYm = 235;
+            passo = 9*2;
+            angulo =26; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            passo = 9.5*1;
+            angulo =333;
+             passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            cenario.translate(passoXm, passoYm);
+            cenario.fillRect(0, 0, 1, 1);
+            cenario.restore();
+
+            cenario.save();
+            passoXm = 200;
+            passoYm = 235;
+            passo = 9.5*2;
+            angulo =333.5; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+              passo = 9*1;
+            angulo =26; // 333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            cenario.translate(passoXm, passoYm);
+            cenario.fillRect(0, 0, 1, 1);
+            cenario.restore();
+            */
+ /*           cenario.save();
+            passoXm = 200;
+            passoYm = 235;
+            passo = 9*5;
+            angulo = 26; //333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            cenario.translate(passoXm, passoYm);
+            cenario.fillRect(0, 0, 1, 1);
+            cenario.restore();
+
+            cenario.save();
+            passoXm = 200;
+            passoYm = 235;
+            passo = 9.2*3;
+            angulo =333.5;
+            passoXm = Math.cos(converterRadianos(angulo)) * passo + passoXm;
+            passoYm = Math.sin(converterRadianos(angulo)) * passo + passoYm;
+            cenario.translate(passoXm, passoYm);
+            cenario.fillRect(0, 0, 1, 1);
+            cenario.restore();
+*/
            
 
             /*   angulo = 26;
