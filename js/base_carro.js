@@ -4,22 +4,27 @@ var radiano = function (grau) {
 }
 
 window.onload = function () {
-    
+
     var objCanvas = document.getElementById('myCanvas');
     var cenario = objCanvas.getContext("2d");
     var imagemCarro = new Image();
 
-    var desenharCarro = function (EstruturaRuaMapa, posicaoTelaX, posicaoTelaY) {
-        cenario.drawImage(imagemCarro, EstruturaRuaMapa.posicao_x, EstruturaRuaMapa.posicao_y, EstruturaRuaMapa.largura, EstruturaRuaMapa.altura, posicaoTelaX, posicaoTelaY, EstruturaRuaMapa.largura, EstruturaRuaMapa.altura);
-    }
+    imagemCarro.onload = function () {
 
-    imagemCarro.onload = function () {         
-        chave = 10000000;
-        desenharCarro(mapaCarroPickUpVerde.listaSegmentos[chave], 200, 200);
-    }
-    imagemCarro.src = mapaCarroPickUpVerde.imagem;
+        var carro = new CarroMovimentacao("S-10", mapaCarroPolicia, 100, 100, 0, imagemCarro);
+        var carro2 = new CarroMovimentacao("S-15", mapaCarroPolicia, 150, 150, 0, imagemCarro);
 
-   
+//        setInterval(function () {
+//            carro.somarAngulo();
+//            carro2.subtrairAngulo();
+//
+//            carro.desenharCarro(cenario);
+//            carro2.desenharCarro(cenario);
+//        }, 100);
+    }
+    imagemCarro.src = mapaCarroPolicia.imagem;
+
+
 
 
 };
